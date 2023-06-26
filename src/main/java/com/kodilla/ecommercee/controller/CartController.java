@@ -20,10 +20,10 @@ public class CartController {
         return Arrays.asList(new ProductDto(1l,"Soap","Chemisty", new BigDecimal(3), 3L), new ProductDto(2l,"Muszyna","Food", new BigDecimal(2), 2L));
     }
     @PutMapping(value = "{cartId}")
-    public void addProduct(@PathVariable long cartId, @RequestBody ProductDto productDto) {
+    public void addProduct(@PathVariable long cartId, @RequestParam long productId) {
     }
     @DeleteMapping(value = "{cartId}")
-    public void removeProduct(@PathVariable long cartId, @RequestBody ProductDto productDto) {
+    public void removeProduct(@PathVariable long cartId, @RequestParam long productId) {
     }
     @PostMapping(value = "{cartId}")
     public void createOrder(@PathVariable long cartId) {
