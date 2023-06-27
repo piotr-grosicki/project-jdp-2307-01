@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -40,8 +40,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "IS_ACTIVE")
     private UserStatus isActive;
-    @Column(name = "ID", unique = true)
-    private long id;
     @OneToMany(
             targetEntity = Cart.class,
             mappedBy = "user",
