@@ -6,6 +6,7 @@ import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,14 +17,14 @@ public class ProductController {
     @GetMapping
     public List<ProductDto> getProducts() {
         return Arrays.asList(
-                new ProductDto(1L, "Product1", "Description1", 1.1, new GroupProductDto(1L, "Group1")),
-                new ProductDto(2L, "Product2", "Description2", 2.2, new GroupProductDto(2L, "Group2"))
+                new ProductDto(1L, "Product1", "Description1", BigDecimal.valueOf(1.1), 1L),
+                new ProductDto(2L, "Product2", "Description2", BigDecimal.valueOf(2.2), 2L)
         );
     }
 
     @GetMapping("/{productId}")
     public ProductDto getProduct(@PathVariable Long productId) throws ProductNotFoundException {
-        return new ProductDto(1L, "Product1", "Description1", 1.1, new GroupProductDto(1L, "Group1"));
+        return new ProductDto(1L, "Product1", "Description1", BigDecimal.valueOf(1.1), 1L);
     }
 
     @PostMapping
@@ -32,7 +33,7 @@ public class ProductController {
 
     @PutMapping("/{productId}")
     public ProductDto updateProduct(@PathVariable Long productId, @RequestBody ProductDto productDto) {
-        return new ProductDto(1L, "Updated Product", "Updated Description", 99.99, new GroupProductDto(1L,"food"));
+        return new ProductDto(1L, "Updated Product", "Updated Description", BigDecimal.valueOf(99.99), 1L);
 
     }
 
