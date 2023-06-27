@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name = "ORDERS")
+@Table(name = "ORDERS")
 public class Order {
 
     @Id
@@ -29,14 +29,14 @@ public class Order {
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "USER_ID")
-    private User userId;
+    private User user;
 
     @OneToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
     @JoinColumn(name = "CART_ID")
-    private Cart cardId;
+    private Cart cart;
 
     @Column(name = "CREATED")
     private LocalDate created;
