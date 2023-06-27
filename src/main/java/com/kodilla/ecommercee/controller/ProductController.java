@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/v1/products")
 public class ProductController {
     @GetMapping
     public List<ProductDto> getProducts() {
