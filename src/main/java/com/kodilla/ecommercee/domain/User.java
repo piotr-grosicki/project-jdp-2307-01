@@ -5,9 +5,10 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.util.List;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,4 +40,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "IS_ACTIVE")
     private UserStatus isActive;
+    @Column(name = "ID", unique = true)
+    private long id;
+    @OneToMany(
+            targetEntity = Cart.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<Cart> carts = new ArrayList<>();
 }
