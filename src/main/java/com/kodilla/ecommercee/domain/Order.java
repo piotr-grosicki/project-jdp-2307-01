@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Entity
 @Table(name = "ORDERS")
 public class Order {
 
