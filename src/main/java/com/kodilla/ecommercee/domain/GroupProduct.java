@@ -1,7 +1,8 @@
 package com.kodilla.ecommercee.domain;
 
 import com.sun.istack.NotNull;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class GroupProduct {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name="ID", unique=true)
+    @Column(name="PRODUCT_GROUP_ID", unique=true)
     private long id;
 
     @NotNull
