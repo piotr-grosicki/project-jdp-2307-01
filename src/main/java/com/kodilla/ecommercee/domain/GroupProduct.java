@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Data
+@NoArgsConstructor
 @Table(name = "PRODUCT_GROUPS")
 public class GroupProduct {
 
@@ -28,10 +29,6 @@ public class GroupProduct {
             fetch = FetchType.LAZY
     )
     private List<Product> products = new ArrayList<>();
-
-    public GroupProduct() {
-
-    }
 
     public GroupProduct(long id, String name) {
         this.id = id;
