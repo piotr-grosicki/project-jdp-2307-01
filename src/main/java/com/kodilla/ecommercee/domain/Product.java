@@ -4,8 +4,10 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Data
@@ -34,4 +36,8 @@ public class Product {
     )
     @JoinColumn(name = "PRODUCT_GROUP_ID")
     private GroupProduct groupProduct;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
+
 }
