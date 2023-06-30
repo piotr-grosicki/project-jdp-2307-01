@@ -25,6 +25,9 @@ public class Order {
     @Column(name = "COST")
     private BigDecimal cost;
 
+    @Column(name = "CREATED")
+    private LocalDate created;
+
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY

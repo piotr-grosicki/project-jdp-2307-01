@@ -27,6 +27,9 @@ public class User {
     @Column(name = "LASTNAME")
     private String lastname;
 
+    @Column(name = "ADDRESS")
+    private String address;
+
     @Column(name = "USER_KEY")
     private Long userKey;
 
