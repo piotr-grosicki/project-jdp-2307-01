@@ -24,5 +24,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     void deleteById(Long id);
 
     List<User> findByFirstname(String firstname);
-    List<User> findByLastnameame(String lastname);
+    List<User> findByLastname(String lastname);
 }
