@@ -13,7 +13,7 @@ public interface GroupProductRepository extends CrudRepository<GroupProduct, Lon
     List<GroupProduct> findAll();
 
     @Override
-    GroupProduct save(GroupProduct task);
+    GroupProduct save(GroupProduct groupProduct);
 
     @Override
     Optional<GroupProduct> findById(Long id);
