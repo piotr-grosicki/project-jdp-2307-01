@@ -30,9 +30,6 @@ public class User {
     @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "BIRTHDAY")
-    private LocalDate birthday;
-
     @Column(name = "USER_KEY")
     private Long userKey;
 

@@ -22,8 +22,11 @@ public class Order {
     @Column(name = "ORDER_ID", unique = true)
     private Long id;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "COST")
+    private BigDecimal cost;
+
+    @Column(name = "CREATED")
+    private LocalDate created;
 
     @ManyToOne(
             cascade = CascadeType.ALL,
@@ -39,10 +42,5 @@ public class Order {
     @JoinColumn(name = "CART_ID")
     private Cart cart;
 
-    @Column(name = "CREATED")
-    private LocalDate created;
-
-    @Column(name = "COST")
-    private BigDecimal cost;
 
 }
