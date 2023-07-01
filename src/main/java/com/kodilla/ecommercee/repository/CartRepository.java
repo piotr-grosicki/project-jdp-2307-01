@@ -13,4 +13,8 @@ import java.util.Optional;
 public interface CartRepository extends CrudRepository<Cart, Long> {
     List<Cart> findAll();
     Optional<Cart> findById(long id);
+    Cart save(Cart cart);
+
+    @Override
+    void deleteById(Long id);
 }

@@ -20,8 +20,6 @@ public class Cart {
     @GeneratedValue
     @Column(name = "CART_ID", unique = true)
     private long id;
-    @Column(name = "NAME")
-    private String name;
     @Column(name = "IS_ACTIVE")
     private boolean isActive;
     @ManyToOne
@@ -35,4 +33,12 @@ public class Cart {
     )
     private List<Product> products = new ArrayList<>();
 
+    public Cart(boolean isActive, User user) {
+        this.isActive = isActive;
+        this.user = user;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }
