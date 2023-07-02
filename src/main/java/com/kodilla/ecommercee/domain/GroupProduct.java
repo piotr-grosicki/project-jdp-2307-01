@@ -31,8 +31,7 @@ public class GroupProduct {
     )
     private List<Product> products = new ArrayList<>();
 
-    public GroupProduct(long id, String name) {
-        this.id = id;
+    public GroupProduct(String name) {
         this.name = name;
     }
 }

@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -22,15 +20,15 @@ public class GroupControllerTestSuite {
     @Test
     public void testSave() {
         //Given
-        GroupProduct groupProduct = new GroupProduct(1, "Fruit");
+        GroupProduct groupProduct = new GroupProduct("Fruit");
 
         //When
         groupProductRepository.save(groupProduct);
 
         //Then
         long id = groupProduct.getId();
-        Optional<GroupProduct> readGroup = groupProductRepository.findById(id);
-        assertTrue(readGroup.isPresent());
+        List<GroupProduct> readGroup = groupProductRepository.findAll();
+        assertEquals(1, readGroup.size());
 
         //CleanUp
         groupProductRepository.deleteById(id);
@@ -39,20 +37,20 @@ public class GroupControllerTestSuite {
     @Test
     public void testFindAll() {
         //Given
-        GroupProduct groupProduct1 = new GroupProduct(1, "Fruit");
-        GroupProduct groupProduct2 = new GroupProduct(2, "Vegetable");
+        GroupProduct groupProduct1 = new GroupProduct("Fruit");
+        GroupProduct groupProduct2 = new GroupProduct("Vegetable");
         groupProductRepository.save(groupProduct1);
         groupProductRepository.save(groupProduct2);
 
         //When
-        List<GroupProduct> readGroupProduct = groupProductRepository.findAll();
+        List<GroupProduct> readGroup = groupProductRepository.findAll();
 
         //Then
-        assertEquals(2, readGroupProduct.size());
+        assertEquals(2, readGroup.size());
 
         //CleanUp
-        long id1 = readGroupProduct.get(0).getId();
-        long id2 = readGroupProduct.get(1).getId();
+        long id1 = readGroup.get(0).getId();
+        long id2 = readGroup.get(1).getId();
         groupProductRepository.deleteById(id1);
         groupProductRepository.deleteById(id2);
     }
@@ -60,16 +58,31 @@ public class GroupControllerTestSuite {
     @Test
     public void testFindById() {
         //Given
-        GroupProduct groupProduct = new GroupProduct(1, "Fruit");
+        GroupProduct groupProduct = new GroupProduct("Fruit");
 
         //When
         groupProductRepository.save(groupProduct);
 
         //Then
-        assertTrue(groupProductRepository.findById(1L).isPresent());
+        long id = groupProduct.getId();
+        assertTrue(groupProductRepository.findById(id).isPresent());
 
         //CleanUp
+        groupProductRepository.deleteById(id);
+    }
+
+    @Test
+    public void testDeleteById() {
+        //Given
+        GroupProduct groupProduct = new GroupProduct("Fruit");
+        groupProductRepository.save(groupProduct);
+
+        //When
         long id = groupProduct.getId();
         groupProductRepository.deleteById(id);
+
+        //Then
+        assertFalse(groupProductRepository.findById(id).isPresent());
+
     }
 }
