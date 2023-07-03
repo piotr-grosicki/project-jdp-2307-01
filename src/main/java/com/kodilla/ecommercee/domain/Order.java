@@ -36,11 +36,16 @@ public class Order {
     private User user;
 
     @OneToOne(
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.ALL},
             fetch = FetchType.EAGER
     )
     @JoinColumn(name = "CART_ID")
     private Cart cart;
 
-
+    public Order(BigDecimal cost, User user, Cart cart) {
+        this.cost = cost;
+        this.created = LocalDate.now();
+        this.user = user;
+        this.cart = cart;
+    }
 }

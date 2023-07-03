@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,4 +41,12 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Cart> carts = new ArrayList<>();
+
+    public User(String firstname, String lastname, String address, Long userKey, UserStatus isActive) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.userKey = userKey;
+        this.isActive = isActive;
+    }
 }
