@@ -25,7 +25,7 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "JOIN_PRODUCTS_CARTS",
             joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")},
