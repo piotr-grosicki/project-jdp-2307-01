@@ -29,7 +29,7 @@ public class Order {
     private LocalDate created;
 
     @ManyToOne(
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "USER_ID")
