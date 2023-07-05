@@ -46,10 +46,10 @@ class ProductControllerTestSuite {
     public void testDelete() {
         //Given
         GroupProduct groupProduct = new GroupProduct(GROUP);
-        groupProductRepository.save(groupProduct);
         Product product = new Product(NAME1, DESCRIPTION, 1);
         product.setGroupProduct(groupProduct);
         productRepository.save(product);
+        groupProductRepository.save(groupProduct);
         long id = product.getId();
         long id2 = groupProduct.getId();
 

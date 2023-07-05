@@ -26,7 +26,7 @@ public class GroupProduct {
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "groupProduct",
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     private List<Product> products = new ArrayList<>();
@@ -34,4 +34,5 @@ public class GroupProduct {
     public GroupProduct(String name) {
         this.name = name;
     }
+
 }

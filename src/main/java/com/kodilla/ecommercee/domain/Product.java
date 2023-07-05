@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -31,6 +30,7 @@ public class Product {
     private double price;
 
     @ManyToOne(
+            cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "PRODUCT_GROUP_ID")
@@ -43,25 +43,5 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setGroupProduct(GroupProduct groupProduct) {
-        this.groupProduct = groupProduct;
     }
 }
