@@ -57,6 +57,7 @@ public class CartControllerTestSuite {
 
         // THEN
         assertFalse(cartRepository.existsById(cart.getId()));
+        assertTrue(userRepository.existsById(user.getId()));
 
         // Clean up
         userRepository.delete(user);
