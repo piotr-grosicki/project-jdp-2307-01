@@ -8,12 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 @SpringBootTest
-class ProductControllerTestSuite {
+class ProductRepositoryTestSuite {
 
     @Autowired
     private ProductRepository productRepository;
@@ -29,7 +30,7 @@ class ProductControllerTestSuite {
     @Test
     public void testSave() {
         //Given
-        Product product = new Product(NAME1, DESCRIPTION, 1);
+        Product product = new Product(NAME1, DESCRIPTION, new BigDecimal(1));
 
         //When
         productRepository.save(product);
@@ -46,7 +47,7 @@ class ProductControllerTestSuite {
     public void testDelete() {
         //Given
         GroupProduct groupProduct = new GroupProduct(GROUP);
-        Product product = new Product(NAME1, DESCRIPTION, 1);
+        Product product = new Product(NAME1, DESCRIPTION, new BigDecimal(1));
         product.setGroupProduct(groupProduct);
         productRepository.save(product);
         groupProductRepository.save(groupProduct);
@@ -67,8 +68,8 @@ class ProductControllerTestSuite {
     @Test
     public void testFindAll() {
         //Given
-        Product product1 = new Product(NAME1, DESCRIPTION, 1);
-        Product product2 = new Product(NAME2, DESCRIPTION, 2);
+        Product product1 = new Product(NAME1, DESCRIPTION, new BigDecimal(1));
+        Product product2 = new Product(NAME2, DESCRIPTION, new BigDecimal(2));
         productRepository.save(product1);
         productRepository.save(product2);
 
@@ -88,7 +89,7 @@ class ProductControllerTestSuite {
     @Test
     public void testFindById() {
         //Given
-        Product product = new Product(NAME1, DESCRIPTION, 1);
+        Product product = new Product(NAME1, DESCRIPTION, new BigDecimal(1));
 
         //When
         productRepository.save(product);
@@ -104,8 +105,8 @@ class ProductControllerTestSuite {
     @Test
     public void testFindAllByName() {
         //Given
-        Product product1 = new Product(NAME1, DESCRIPTION, 1);
-        Product product2 = new Product(NAME2, DESCRIPTION, 2);
+        Product product1 = new Product(NAME1, DESCRIPTION, new BigDecimal(1));
+        Product product2 = new Product(NAME2, DESCRIPTION, new BigDecimal(2));
         productRepository.save(product1);
         productRepository.save(product2);
         String name = product1.getName();

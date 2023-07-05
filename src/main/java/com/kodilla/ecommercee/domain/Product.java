@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Product {
     private String description;
 
     @Column(name = "PRICE")
-    private double price;
+    private BigDecimal price;
 
     @ManyToOne(
             cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
@@ -39,7 +40,7 @@ public class Product {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
     private List<Cart> carts = new ArrayList<>();
 
-    public Product(String name, String description, double price) {
+    public Product(String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.price = price;
