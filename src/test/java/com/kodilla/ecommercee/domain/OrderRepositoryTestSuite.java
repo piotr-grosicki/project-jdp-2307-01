@@ -38,13 +38,18 @@ public class OrderRepositoryTestSuite {
     void preparingData() {
         user = new User("John", "Smith", "Poland",1L, UserStatus.T );
         food = new GroupProduct("Food");
-        product1 = new Product("Apple", "Fruit", new BigDecimal(1.23));
-        product2 = new Product("Potato", "Vegetables", new BigDecimal(1.45));
+        product1 = new Product("Apple", "Fruit", new BigDecimal(34));
+        product2 = new Product("Potato", "Vegetables", new BigDecimal(134));
+        userRepository.save(user);
+        groupProductRepository.save(food);
+        productRepository.save(product1);
+        productRepository.save(product2);
         product1.setGroupProduct(food);
         product2.setGroupProduct(food);
         cart = new Cart(true, user);
         cart.getProducts().add(product1);
         cart.getProducts().add(product2);
+        cartRepository.save(cart);
     }
     @Test
     void savingOrderTest() {
@@ -55,31 +60,18 @@ public class OrderRepositoryTestSuite {
         orderRepository.save(order);
         //Then
         long orderId = order.getId();
-        long userId = user.getId();
-        long product1Id = product1.getId();
-        long product2Id = product2.getId();
-        long cartId = cart.getId();
-        long groupId = food.getId();
         Optional<Order> readOrder = orderRepository.findById(orderId);
-        Optional<User> readUser = userRepository.findById(userId);
-        Optional<Product> readProduct = productRepository.findById(product1Id);
-        Optional<Cart> readCart = cartRepository.findById(cartId);
-        Optional<GroupProduct> readGroup = groupProductRepository.findById(groupId);
-
 
         Assertions.assertTrue(readOrder.isPresent());
-        Assertions.assertTrue(readUser.isPresent());
-        Assertions.assertTrue(readProduct.isPresent());
-        Assertions.assertTrue(readCart.isPresent());
-        Assertions.assertTrue(readGroup.isPresent());
 
 
         //CleanUp
         orderRepository.deleteById(orderId);
-        userRepository.deleteById(userId);
-        productRepository.deleteById(product1Id);
-        productRepository.deleteById(product2Id);
-        groupProductRepository.deleteById(groupId);
+        cartRepository.deleteById(cart.getId());
+        userRepository.deleteById(user.getId());
+        productRepository.deleteById(product1.getId());
+        productRepository.deleteById(product2.getId());
+        groupProductRepository.deleteById(food.getId());
 
 
     }
@@ -97,6 +89,7 @@ public class OrderRepositoryTestSuite {
         Assertions.assertTrue(readUser.isPresent());
         //CleanUp
         userRepository.deleteById(user.getId());
+        cartRepository.deleteById(cart.getId());
         productRepository.deleteById(product1.getId());
         productRepository.deleteById(product2.getId());
         groupProductRepository.deleteById(food.getId());
@@ -120,6 +113,7 @@ public class OrderRepositoryTestSuite {
 
         //CleanUp
         userRepository.deleteById(user.getId());
+        cartRepository.deleteById(cart.getId());
         productRepository.deleteById(product1.getId());
         productRepository.deleteById(product2.getId());
         groupProductRepository.deleteById(food.getId());
@@ -138,6 +132,26 @@ public class OrderRepositoryTestSuite {
         Assertions.assertTrue(readGroup.isPresent());
         //CleanUp
         userRepository.deleteById(user.getId());
+        cartRepository.deleteById(cart.getId());
+        productRepository.deleteById(product1.getId());
+        productRepository.deleteById(product2.getId());
+        groupProductRepository.deleteById(food.getId());
+    }
+    @Test
+    void deletingOrderWithCartTest() {
+        //Given
+        Order order = new Order(new BigDecimal(23), user, cart);
+        orderRepository.save(order);
+        long orderId = order.getId();
+        long cartId = cart.getId();
+        //When
+        orderRepository.deleteById(orderId);
+        Optional<Cart> readCart = cartRepository.findById(cartId);
+        //Then
+        Assertions.assertTrue(readCart.isPresent());
+        //CleanUp
+        userRepository.deleteById(user.getId());
+        cartRepository.deleteById(cart.getId());
         productRepository.deleteById(product1.getId());
         productRepository.deleteById(product2.getId());
         groupProductRepository.deleteById(food.getId());
@@ -148,6 +162,7 @@ public class OrderRepositoryTestSuite {
         Order order1 = new Order(new BigDecimal(30), user, cart);
         Cart cart2 = new Cart(true,user);
         cart2.getProducts().add(product1);
+        cartRepository.save(cart2);
         Order order2 = new Order(new BigDecimal(25), user, cart2);
         orderRepository.save(order1);
         orderRepository.save(order2);
@@ -158,6 +173,8 @@ public class OrderRepositoryTestSuite {
         //CleanUp
         orderRepository.deleteById(order1.getId());
         orderRepository.deleteById(order2.getId());
+        cartRepository.deleteById(cart.getId());
+        cartRepository.deleteById(cart2.getId());
         userRepository.deleteById(user.getId());
         productRepository.deleteById(product1.getId());
         productRepository.deleteById(product2.getId());

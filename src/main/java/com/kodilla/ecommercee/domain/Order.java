@@ -29,14 +29,12 @@ public class Order {
     private LocalDate created;
 
     @ManyToOne(
-            cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "USER_ID")
     private User user;
 
     @OneToOne(
-            cascade = {CascadeType.ALL},
             fetch = FetchType.EAGER
     )
     @JoinColumn(name = "CART_ID")

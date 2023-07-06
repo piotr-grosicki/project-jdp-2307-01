@@ -48,9 +48,9 @@ class ProductRepositoryTestSuite {
         //Given
         GroupProduct groupProduct = new GroupProduct(GROUP);
         Product product = new Product(NAME1, DESCRIPTION, new BigDecimal(1));
+        groupProductRepository.save(groupProduct);
         product.setGroupProduct(groupProduct);
         productRepository.save(product);
-        groupProductRepository.save(groupProduct);
         long id = product.getId();
         long id2 = groupProduct.getId();
 
