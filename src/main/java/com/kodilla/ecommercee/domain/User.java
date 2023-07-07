@@ -35,12 +35,22 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "IS_ACTIVE")
     private UserStatus isActive;
+
     @OneToMany(
             targetEntity = Cart.class,
             mappedBy = "user",
-            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Cart> carts = new ArrayList<>();
+
+    @OneToMany(targetEntity = Order.class,
+            mappedBy = "user",
+            fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
+
+    public User(String firstname, UserStatus isActive) {
+        this.firstname = firstname;
+        this.isActive = isActive;
+    }
 
     public User(String firstname, String lastname, String address, Long userKey, UserStatus isActive) {
         this.firstname = firstname;
