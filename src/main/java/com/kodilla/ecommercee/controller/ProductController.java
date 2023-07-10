@@ -6,7 +6,7 @@ import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import com.kodilla.ecommercee.exception.GroupNotFoundException;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +16,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/products")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductMapper productMapper;
-
-    @Autowired
-    private ProductService productService;
+    private final ProductMapper productMapper;
+    private final ProductService productService;
 
     @GetMapping
     public ResponseEntity<List<ProductDto>> getProducts() {
