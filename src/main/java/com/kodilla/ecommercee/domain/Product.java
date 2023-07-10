@@ -31,7 +31,6 @@ public class Product {
     private BigDecimal price;
 
     @ManyToOne(
-            cascade = {CascadeType.DETACH,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "PRODUCT_GROUP_ID")

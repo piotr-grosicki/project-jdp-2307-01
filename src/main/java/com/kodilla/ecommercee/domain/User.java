@@ -52,4 +52,11 @@ public class User {
         this.isActive = isActive;
     }
 
+    public User(String firstname, String lastname, String address, Long userKey, UserStatus isActive) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.userKey = userKey;
+        this.isActive = isActive;
+    }
 }
