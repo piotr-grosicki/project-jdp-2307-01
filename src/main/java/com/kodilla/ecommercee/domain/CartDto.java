@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+
 @Getter
 public class CartDto {
-    private long id;
-    private String name;
+
     private boolean isActive;
     private long userId;
-    private long orderId;
 
+    public CartDto(long userId) {
+        this.userId = userId;
+        this.isActive = true;
+    }
 }
 
