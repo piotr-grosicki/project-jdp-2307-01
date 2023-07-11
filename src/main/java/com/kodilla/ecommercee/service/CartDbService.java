@@ -12,9 +12,11 @@ import com.kodilla.ecommercee.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class CartService {
+public class CartDbService {
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
@@ -49,5 +51,9 @@ public class CartService {
         }else {
             throw new NotActiveCartException();
         }
+    }
+    public List<Product> getProductsFromCart (long cartId) throws CartNotFoundException {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(CartNotFoundException::new);
+        return cart.getProducts();
     }
 }

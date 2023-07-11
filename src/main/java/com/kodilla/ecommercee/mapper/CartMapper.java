@@ -9,12 +9,18 @@ import com.kodilla.ecommercee.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CartMapper {
 
     private final UserRepository userRepository;
     public Cart mapToCart(final CartDto cartDto) throws UserNotFoundException {
-        return new Cart(cartDto.isActive(), userRepository.findById(cartDto.getUserId()).orElseThrow(UserNotFoundException::new));
+        if(cartDto.getId() > 0) {
+            return new Cart(cartDto.getId(), cartDto.isActive(), userRepository.findById(cartDto.getUserId()).orElseThrow(UserNotFoundException::new));
+        } else {
+            return new Cart(true, userRepository.findById(cartDto.getUserId()).orElseThrow(UserNotFoundException::new));
+        }
     }
 }

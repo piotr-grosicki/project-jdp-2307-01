@@ -8,22 +8,22 @@ import com.kodilla.ecommercee.exception.AllreadyActiveCartException;
 import com.kodilla.ecommercee.exception.CartNotFoundException;
 import com.kodilla.ecommercee.exception.NotActiveCartException;
 import com.kodilla.ecommercee.mapper.CartMapper;
-import com.kodilla.ecommercee.service.CartService;
+import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.service.CartDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 @RequestMapping("/v1/cart")
 public class CartController {
     private final CartMapper cartMapper;
-    private final CartService cartService;
+    private final CartDbService cartService;
+    private final ProductMapper productMapper;
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createCart(@RequestBody CartDto cartDto) throws UserNotFoundException, AllreadyActiveCartException {
         Cart cart = cartMapper.mapToCart(cartDto);
@@ -31,8 +31,8 @@ public class CartController {
         return ResponseEntity.ok().build();
     }
     @GetMapping(value = "{cartId}")
-    public List<ProductDto> getProductsFromCart(@PathVariable long cartId) {
-        return Arrays.asList(new ProductDto(1l,"Soap","Chemisty", new BigDecimal(3), 3L), new ProductDto(2l,"Muszyna","Food", new BigDecimal(2), 2L));
+    public ResponseEntity<List<ProductDto>> getProductsFromCart(@PathVariable long cartId) throws CartNotFoundException {
+        return ResponseEntity.ok(productMapper.mapToProductDtoList(cartService.getProductsFromCart(cartId)));
     }
     @PutMapping(value = "{cartId}")
     public ResponseEntity<Void> addProduct(@PathVariable long cartId, @RequestParam long productId) throws CartNotFoundException, ProductNotFoundException, NotActiveCartException {
