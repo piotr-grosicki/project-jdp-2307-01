@@ -1,9 +1,10 @@
 package com.kodilla.ecommercee.domain;
 
+import com.kodilla.ecommercee.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -12,8 +13,8 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String address;
-    private String email;
     private Long userKey;
-    private LocalDate birthday;
-    private boolean isBlocked;
+    private UserStatus isActive;
+    private List<Cart> carts;
+    private List<Order> orders;
 }
