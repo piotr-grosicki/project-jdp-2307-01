@@ -7,6 +7,7 @@ import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import com.kodilla.ecommercee.exception.AllreadyActiveCartException;
 import com.kodilla.ecommercee.exception.CartNotFoundException;
 import com.kodilla.ecommercee.exception.NotActiveCartException;
+import com.kodilla.ecommercee.exception.NotAutorizedUserException;
 import com.kodilla.ecommercee.mapper.CartMapper;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.CartDbService;
@@ -45,7 +46,9 @@ public class CartController {
         return ResponseEntity.ok().build();
     }
     @PostMapping(value = "{cartId}")
-    public void createOrder(@PathVariable long cartId) {
+    public ResponseEntity<Void> createOrder(@PathVariable long cartId) throws CartNotFoundException, NotAutorizedUserException {
+        cartService.makeOrder(cartId);
+        return ResponseEntity.ok().build();
     }
 
 }
