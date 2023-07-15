@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.enums.UserStatus;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 public class User {
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "USER_ID", unique = true)
     private Long id;
 
