@@ -4,6 +4,8 @@ import com.kodilla.ecommercee.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,7 +30,10 @@ public class User {
     private String address;
 
     @Column(name = "USER_KEY")
-    private Long userKey;
+    private String userKey;
+
+    @Column(name = "USER_KEYVALIDITY")
+    private LocalDateTime keyValidity;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "IS_ACTIVE")
