@@ -8,10 +8,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class CartDto {
     private long id;
-    private String name;
     private boolean isActive;
     private long userId;
-    private long orderId;
 
 }
 

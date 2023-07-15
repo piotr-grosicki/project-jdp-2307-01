@@ -38,6 +38,12 @@ public class Cart {
         this.user = user;
     }
 
+    public Cart(long id, boolean isActive, User user) {
+        this.id = id;
+        this.isActive = isActive;
+        this.user = user;
+    }
+
     public void setActive(boolean active) {
         isActive = active;
     }
