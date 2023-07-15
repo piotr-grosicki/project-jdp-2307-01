@@ -22,4 +22,6 @@ public interface GroupProductRepository extends CrudRepository<GroupProduct, Lon
 
     @Override
     void deleteById(Long id);
+
+
 }
