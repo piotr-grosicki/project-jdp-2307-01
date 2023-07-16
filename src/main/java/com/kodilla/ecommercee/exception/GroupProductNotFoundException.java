@@ -6,3 +6,4 @@ public class GroupProductNotFoundException extends Exception{
         super("GroupProduct with " + id + " not found.");
     }
 }
+}
