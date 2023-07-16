@@ -44,4 +44,12 @@ public class Product {
         this.description = description;
         this.price = price;
     }
+
+    public Product(Long id, String name, String description, BigDecimal price, GroupProduct groupProduct) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.groupProduct = groupProduct;
+    }
 }
