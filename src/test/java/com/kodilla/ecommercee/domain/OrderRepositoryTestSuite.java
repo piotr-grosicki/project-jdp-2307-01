@@ -36,7 +36,7 @@ public class OrderRepositoryTestSuite {
 
     @BeforeEach
     void preparingData() {
-        user = new User("John", "Smith", "Poland",1L, UserStatus.T );
+        user = new User("John", "Smith", "Poland","1L", UserStatus.T );
         food = new GroupProduct("Food");
         product1 = new Product("Apple", "Fruit", new BigDecimal(34));
         product2 = new Product("Potato", "Vegetables", new BigDecimal(134));

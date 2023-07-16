@@ -55,7 +55,7 @@ public class User {
         this.isActive = isActive;
     }
 
-    public User(String firstname, String lastname, String address, Long userKey, UserStatus isActive) {
+    public User(String firstname, String lastname, String address, String userKey, UserStatus isActive) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
