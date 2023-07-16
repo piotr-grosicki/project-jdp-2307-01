@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class OrderDto {
     private Long id;
-    private String name;
     private Long cartId;
     private Long userId;
     private LocalDate created;
