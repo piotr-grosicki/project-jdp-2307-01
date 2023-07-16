@@ -24,14 +24,11 @@ public class GroupProductDbService {
         return repository.save(groupProduct);
     }
 
-    public GroupProduct getGroupProductById(Long id) throws GroupProductNotFoundException{
+    public GroupProduct getGroupProductById(Long id) throws GroupProductNotFoundException {
         return repository.findById(id).orElseThrow(() -> new GroupProductNotFoundException(id));
     }
 
     public void deleteGroupProduct(long id){
         repository.deleteById(id);
     }
-
-
-
 }
