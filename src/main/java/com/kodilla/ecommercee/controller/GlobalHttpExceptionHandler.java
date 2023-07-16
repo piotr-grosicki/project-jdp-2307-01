@@ -4,6 +4,7 @@ import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import com.kodilla.ecommercee.exception.AllreadyActiveCartException;
 import com.kodilla.ecommercee.exception.CartNotFoundException;
 import com.kodilla.ecommercee.exception.NotActiveCartException;
+import com.kodilla.ecommercee.exception.NotAutorizedUserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,5 +32,10 @@ public class GlobalHttpExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> notActiveCartHandler(NotActiveCartException e) {
         return new ResponseEntity<>("This cart is not active", HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(NotAutorizedUserException.class)
+    public ResponseEntity<Object> notAutorizedUserHandler(NotAutorizedUserException e) {
+        return new ResponseEntity<>("Akces forbidden", HttpStatus.FORBIDDEN);
+    }
+
 
 }
