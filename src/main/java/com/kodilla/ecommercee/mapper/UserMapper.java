@@ -13,6 +13,7 @@ public class UserMapper {
                 userDto.getLastName(),
                 userDto.getAddress(),
                 userDto.getUserKey(),
+                userDto.getKeyValidity(),
                 userDto.getIsActive(),
                 userDto.getCarts(),
                 userDto.getOrders()
@@ -26,6 +27,7 @@ public class UserMapper {
                 user.getLastname(),
                 user.getAddress(),
                 user.getUserKey(),
+                user.getKeyValidity(),
                 user.getIsActive(),
                 user.getCarts(),
                 user.getOrders()

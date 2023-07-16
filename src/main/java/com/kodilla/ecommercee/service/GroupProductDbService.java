@@ -28,7 +28,7 @@ public class GroupProductDbService {
         return repository.findById(id).orElseThrow(() -> new GroupProductNotFoundException(id));
     }
 
-    public void deleteGroupProduct(long id){
+   public void deleteGroupProduct(long id){
         repository.deleteById(id);
     }
 

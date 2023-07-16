@@ -4,6 +4,7 @@ import com.kodilla.ecommercee.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -13,7 +14,8 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String address;
-    private Long userKey;
+    private String userKey;
+    private LocalDateTime keyValidity;
     private UserStatus isActive;
     private List<Cart> carts;
     private List<Order> orders;
