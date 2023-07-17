@@ -35,18 +35,10 @@ public class OrderMapper {
     }
 
     public OrderDto mapToOrderDto(Order order) {
-        Long userId = Optional.ofNullable(order.getUser())
-                .map(User::getId)
-                .orElse(null);
-
-        Long cartId = Optional.ofNullable(order.getCart())
-                .map(Cart::getId)
-                .orElse(null);
-
         return new OrderDto(
                 order.getId(),
-                cartId != null ? cartId : 0L,
-                userId != null ? userId : 0L,
+                order.getCart().getId(),
+                order.getUser().getId(),
                 order.getCreated(),
                 order.getCost()
         );
