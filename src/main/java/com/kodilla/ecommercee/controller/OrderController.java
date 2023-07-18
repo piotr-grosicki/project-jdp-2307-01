@@ -27,7 +27,8 @@ public class OrderController {
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addOrder(@RequestBody OrderDto orderDto) throws UserNotFoundException, CartNotFoundException {
-        orderDbService.saveOrder(orderMapper.mapToOrder(orderDto));
+        Order order = orderMapper.mapToOrder(orderDto);
+        orderDbService.saveOrder(order);
         return ResponseEntity.ok().build();
     }
 
