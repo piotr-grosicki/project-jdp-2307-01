@@ -4,6 +4,7 @@ import com.kodilla.ecommercee.exception.OrderNotFoundException;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OrderDbService {
+    @Autowired
     private final OrderRepository orderRepository;
 
     public List<Order> getAllOrders() {
@@ -27,7 +29,6 @@ public class OrderDbService {
     }
 
     public void deleteOrder(Long orderId) throws OrderNotFoundException{
-        Order order = getOrder(orderId);
-        orderRepository.delete(order);
+        orderRepository.deleteById(orderId);
     }
 }

@@ -21,7 +21,7 @@ public class OrderMapper {
 
     public Order mapToOrder(final OrderDto orderDto) throws UserNotFoundException, CartNotFoundException {
         return new Order(
-                orderDto.getId(),
+                orderDto.getId() != null ? orderDto.getId() : 0l,
                 orderDto.getCost(),
                 orderDto.getCreated(),
                 userRepository.findById(orderDto.getUserId()).orElseThrow(UserNotFoundException::new),
