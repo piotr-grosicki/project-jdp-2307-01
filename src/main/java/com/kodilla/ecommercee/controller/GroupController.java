@@ -44,9 +44,13 @@ public class GroupController {
     }
 
     @PutMapping
-    public ResponseEntity<GroupProductDto> updateGroup(@RequestBody GroupProductDto groupProductDto) {
-        GroupProduct groupProduct = groupProductMapper.mapToGroupProduct(groupProductDto);
-        GroupProduct savedGroupProduct = groupProductDbService.saveGroup(groupProduct);
+    public ResponseEntity<GroupProductDto> updateGroup(@RequestBody GroupProductDto groupProductDto) throws GroupProductNotFoundException {
+        GroupProduct groupProduct= groupProductMapper.mapToGroupProduct(groupProductDto);
+        GroupProduct savedGroupProduct = null;
+
+        if (groupProductDbService.getGroupProductById(groupProductDto.getId()) != null) {
+            savedGroupProduct = groupProductDbService.saveGroup(groupProduct);
+        }
 
         return ResponseEntity.ok(groupProductMapper.mapToGroupProductDto(savedGroupProduct));
     }

@@ -1,6 +1,6 @@
-package com.kodilla.ecommercee.controller;
+package com.kodilla.ecommercee.exception;
 
-import com.kodilla.ecommercee.domain.ProductNotFoundException;
+import com.kodilla.ecommercee.exception.ProductNotFoundException;
 import com.kodilla.ecommercee.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

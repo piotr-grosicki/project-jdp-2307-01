@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.exception;
 
 public class ProductNotFoundException extends RuntimeException{
     public ProductNotFoundException(long productId){
