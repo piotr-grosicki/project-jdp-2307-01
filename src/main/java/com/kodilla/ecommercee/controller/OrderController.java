@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.OrderDto;
+import com.kodilla.ecommercee.exception.OrderNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "{orderId}")
-    public OrderDto getOrder(@PathVariable Long orderId) throws OrderNotFoundException{
+    public OrderDto getOrder(@PathVariable Long orderId) throws OrderNotFoundException {
         return new OrderDto(2L, "Order2", 2L, 2L, LocalDate.of(2022,1,1),new BigDecimal(500));
     }
 
