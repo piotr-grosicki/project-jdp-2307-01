@@ -1,4 +1,8 @@
 package com.kodilla.ecommercee.exception;
 
-public class OrderNotFoundException extends Exception{
+
+public class OrderNotFoundException extends RuntimeException{
+    public OrderNotFoundException (long id) {
+        super(String.format("Order with id %s not found", id));
+    }
 }
